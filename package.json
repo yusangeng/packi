@@ -14,7 +14,7 @@
     "coverage": "nyc report --reporter=lcov",
     "es5": "rm -rf ./lib && tsc -p tsconfig.json",
     "prepublishOnly": "npm run es5",
-    "ci": "npm link && mkdir demo && cd demo && pki init tslib"
+    "ci": "npm run es5 && npm link && mkdir demo && cd demo && pki init tslib"
   },
   "repository": {
     "type": "git",
