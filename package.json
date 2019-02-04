@@ -1,0 +1,84 @@
+{
+  "name": "packi",
+  "version": "0.1.0",
+  "description": "A Project initializer.",
+  "main": "lib/index.js",
+  "jsnext:main": "src/index.js",
+  "bin": {
+    "pki": "bin/index.js"
+  },
+  "types": "lib/",
+  "type-check": "tsc",
+  "scripts": {
+    "test": "nyc mocha --require ts-node/register test/*.spec.ts",
+    "coverage": "nyc report --reporter=lcov",
+    "es5": "rm -rf ./lib && tsc -p tsconfig.json",
+    "prepublishOnly": "npm run es5",
+    "ci": "npm link && mkdir demo && pki init tslib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yusangeng/packi.git"
+  },
+  "keywords": [
+    "project-initialize",
+    "scaffold"
+  ],
+  "author": {
+    "name": "Y3G",
+    "email": "yusangeng@outlook.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/lodash": "^4.14.120",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.19",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.2",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
+    "source-map-support": "^0.5.10",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.2.4"
+  },
+  "dependencies": {
+    "@types/cli-progress": "^1.8.0",
+    "@types/download": "^6.2.4",
+    "@types/ejs": "^2.6.1",
+    "@types/es6-promisify": "^6.0.0",
+    "@types/file-exists": "^4.0.0",
+    "@types/mkdirp": "^0.5.2",
+    "@types/rimraf": "^2.0.2",
+    "@types/user-home": "^2.0.0",
+    "chalk": "^2.4.1",
+    "decompress": "^4.2.0",
+    "download": "^7.1.0",
+    "ejs": "^2.6.1",
+    "es6-promisify": "^6.0.1",
+    "execa": "^1.0.0",
+    "file-exists": "^5.0.1",
+    "fs-walk": "0.0.2",
+    "lodash": "^4.17.4",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.3",
+    "tslib": "^1.9.3",
+    "user-home": "^2.0.0"
+  },
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "include": [
+      "src"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "reporter": [
+      "html"
+    ],
+    "all": true
+  }
+}
