@@ -1,7 +1,7 @@
 {
   "name": "packi",
-  "version": "0.1.1",
-  "description": "A Project initializer.",
+  "version": "0.1.2",
+  "description": "Maybe the easiest project initializer.",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
   "bin": {

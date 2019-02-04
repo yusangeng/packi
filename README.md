@@ -1,4 +1,4 @@
-# packi | Maybe the easiest Project initializer
+# packi | Maybe the easiest project initializer
 
 [![Npm Package Info](https://badge.fury.io/js/packi.svg)](https://www.npmjs.com/package/packi) [![Downloads](https://img.shields.io/npm/dw/packi.svg?style=flat)](https://www.npmjs.com/package/packi)
 
