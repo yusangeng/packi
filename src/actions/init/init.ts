@@ -1,7 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 import rm from 'rimraf'
-import { promisify } from 'es6-promisify'
 import { info, error } from '../../print'
 import { read } from '../../globalData'
 import downloadTemplate from './downloadTemplate'
