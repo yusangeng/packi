@@ -43,10 +43,8 @@
     "typescript": "^3.2.4"
   },
   "dependencies": {
-    "@types/cli-progress": "^1.8.0",
     "@types/download": "^6.2.4",
     "@types/ejs": "^2.6.1",
-    "@types/es6-promisify": "^6.0.0",
     "@types/file-exists": "^4.0.0",
     "@types/mkdirp": "^0.5.2",
     "@types/rimraf": "^2.0.2",

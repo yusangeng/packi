@@ -3,7 +3,6 @@ import path from 'path'
 import mkdir from 'mkdirp'
 import download from 'download'
 import decompress from 'decompress'
-import cliProgress from 'cli-progress'
 import { debug, info } from '../../print'
 
 export default async function downloadTemplate (cwd: string, url: string) : Promise<string> {
