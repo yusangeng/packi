@@ -5,7 +5,7 @@ import walk from 'fs-walk'
 import { debug, info, error } from '../../print'
 
 export default function fillTemplate (cwd: string, projectName: string) {
-  info(`Filling EJS templates...`)
+  info(`Filling EJS templates, basedir="${cwd}"...`)
 
   return new Promise((resolve, reject) => {
     walk.walk(cwd, (basedir: string, filename: string, stat: any, next: () => void) => {
@@ -16,7 +16,7 @@ export default function fillTemplate (cwd: string, projectName: string) {
       const filepath = path.resolve(basedir, filename)
       const extname = path.extname(filepath)
 
-      if (!['.js', '.jsx', '.ts', '.tsx', '.md', '.json', 'css', 'less', 'sass', 'html', 'vue'].includes(extname)) {
+      if (!['.js', '.jsx', '.ts', '.tsx', '.md', '.json', 'css', 'less', 'sass', 'scss', 'html', 'vue'].includes(extname)) {
         return next()
       }
 
