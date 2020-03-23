@@ -4,7 +4,7 @@ import fileExists from 'file-exists'
 import userHome from 'user-home'
 
 type GlobalData = {
-  [name: string]: any,
+  [name: string]: any
   templates: {
     [name: string]: string
   }
@@ -15,16 +15,19 @@ const globalDataFilename = path.resolve(userHome, './.packi.json')
 if (!fileExists.sync(globalDataFilename)) {
   write({
     templates: {
-      tslib: 'http://github.com/yusangeng/packi-template-tslib/archive/master.zip'
+      tslib: 'http://github.com/yusangeng/packi-template-tslib/archive/master.zip',
+      karma: 'https://github.com/yusangeng/packi-template-tslib/archive/karma.zip'
     }
   })
 }
 
-export function read () : GlobalData {
+export function read(): GlobalData {
   const data = JSON.parse(fs.readFileSync(globalDataFilename, { encoding: 'utf8' }))
   return data as GlobalData
 }
 
-export function write (data: GlobalData) : void {
-  fs.writeFileSync(globalDataFilename, JSON.stringify(data, null, 2), { encoding: 'utf8' })
+export function write(data: GlobalData): void {
+  fs.writeFileSync(globalDataFilename, JSON.stringify(data, null, 2), {
+    encoding: 'utf8'
+  })
 }
