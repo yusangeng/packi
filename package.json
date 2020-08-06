@@ -49,6 +49,7 @@
     "typescript": "^3.2.4"
   },
   "dependencies": {
+    "async": "^2.0.0",
     "chalk": "^2.4.1",
     "decompress": "^4.2.0",
     "download": "^7.1.0",
