@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
   "bin": {
-    "pki": "bin/index.js"
+    "pki": "bin/index.js",
+    "packi": "bin/index.js"
   },
   "types": "lib/",
   "type-check": "tsc",
