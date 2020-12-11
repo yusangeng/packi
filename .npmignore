@@ -3,3 +3,9 @@ coverage
 .nyc_output
 .vscode
 package-lock.json
+yarn.lock
+src
+tsconfig.json
+.eslintrc.js
+.prettierrc.js
+travis.yml

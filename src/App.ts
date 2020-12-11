@@ -1,54 +1,100 @@
-import path from 'path'
-import { printPackageInfo, info, error } from "./print"
+import path from "path";
+import download from "download";
+import { getPackageInfo } from "~/libs/packageHelper";
+import { printPackageInfo, enableDebugPrint, error, warn, success } from "~/print";
+import { compareVersion } from "~/libs/versionHelper";
 
-const actionPath = path.resolve(__dirname, './actions')
+const actionPath = path.resolve(__dirname, "./actions");
+
+const PACKAGE_INFO_URL = "http://registry.npm.taobao.org/packi";
 
 export default class App {
-  appArgs: string[]
-  cwd: string
-  command: string
+  appArgs: string[];
+  cwd: string;
+  command: string;
 
-  constructor (args: string[], cwd: string) {
-    this.appArgs = args.slice(2)
-    this.cwd = cwd
-    this.command = this.appArgs[0]
+  constructor(args: string[], cwd: string) {
+    this.appArgs = args.slice(2);
+    this.cwd = cwd;
+    this.command = this.appArgs[0];
 
-    printPackageInfo()
+    // console.log(this.appArgs)
+
+    if (this.appArgs.find(el => el === "-D")) {
+      enableDebugPrint();
+    }
   }
 
-  async run () : Promise<number> {
-    const { command } = this
-    let cammandAction = null
+  async run(): Promise<number> {
+    try {
+      this.printAppInfo();
+      await this.checkVersion();
+    } catch (err) {
+      error(err.message);
+      error(`Try to continue...`);
+    }
+
+    const { command } = this;
+    let cammandAction = null;
 
     try {
-      const libPath = `${actionPath}/${command}`
+      const libPath = `${actionPath}/${command}`;
 
-      cammandAction = require(libPath).default
+      cammandAction = require(libPath).default;
 
-      if (typeof cammandAction !== 'function') {
-        error(`Bad command: ${command}.`)
-        return 1
+      if (typeof cammandAction !== "function") {
+        error(`Bad command: "${command}".`);
+        return 1;
       }
     } catch (err) {
       if (!cammandAction) {
-        error(`Can NOT find action: "${command}", error message: ${err.message}.`)
-        error(`Please execute "pki help" for help.`)
-        return 1
+        error(`Can NOT find action: "${command}".`);
+        error(err);
+        error(`Please execute "packi help" for help.`);
+        return 1;
       }
 
-      error(err.message)
-      return 1
+      error(err.message);
+      return 1;
     }
 
-    let retCode = 0
+    let retCode = 0;
 
     try {
-      retCode = await cammandAction(this.cwd, ...this.appArgs)
+      retCode = await cammandAction(this.cwd, ...this.appArgs);
     } catch (err) {
-      error(err.message)
-      retCode = 1
+      error(err);
+      retCode = 1;
     }
 
-    return retCode
+    if (!retCode) {
+      success("Finish.");
+    }
+
+    return retCode;
+  }
+
+  printAppInfo() {
+    const { name, version } = getPackageInfo();
+    printPackageInfo(name, version);
+  }
+
+  async checkVersion() {
+    const data = await download(PACKAGE_INFO_URL);
+    const jsonText = data.toString("utf8");
+    const schema = JSON.parse(jsonText);
+    const latestVersion = schema["dist-tags"]["latest"];
+    const { version } = getPackageInfo();
+
+    if (compareVersion(latestVersion, version) > 0) {
+      //if (onlineVersion !== version) {
+      //存在新版本
+      warn(`\n`);
+      warn(`>>>>------- IMPORTANT INFORMATION -------<<<<`);
+      warn(`A newer version(${latestVersion}) has been published.`);
+      warn(`Please upgrade your local package(${version}) soon.`);
+      warn(`>>>>-------------------------------------<<<<`);
+      warn(`\n`);
+    }
   }
 }

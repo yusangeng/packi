@@ -1,3 +1,4 @@
-import App from './App'
+import "./moduleAlias";
+import App from "./App";
 
-export default App
+export default App;

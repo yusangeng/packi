@@ -1,58 +1,100 @@
-import fs from 'fs'
-import path from 'path'
-import chalk from 'chalk'
+import chalk from "chalk";
 
-export function printPackageInfo () : void {
-  const pack = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../package.json'), {
-    encoding: 'utf8'
-  }))
+let debugPrint = false;
 
-  const { name, version } = pack
-  const t = `>>>>---- ${name} - ${version} ----<<<<\n`
-
-  console.log('\n')
-  info(t)
+export function enableDebugPrint() {
+  debugPrint = true;
 }
 
-export function debugLine (text: string) : void {
-  console.log(`packi ${chalk.bgHex('#563F2E')(' DEBG ')}  ${text}`)
+export function printPackageInfo(name: string, version: string): void {
+  const t = `>>>>---- ${name} - ${version} ----<<<<`;
+
+  console.log("\n");
+  info(t);
 }
 
-export function infoLine (text: string) : void {
-  console.log(`packi ${chalk.bgHex('#6F3381')(' INFO ')}  ${text}`)
+export function debugLine(text: string): void {
+  console.log(`packi ${chalk.hex("#014d67")(" DEBG ")}  ${text}`);
 }
 
-export function warnLine (text: string) : void {
-  console.log(`packi ${chalk.bgHex('#CA7A2C')(' WARN ')}  ${text}`)
+export function infoLine(text: string): void {
+  console.log(`packi ${chalk.hex("#608f9f")(" INFO ")}  ${text}`);
 }
 
-export function errorLine (text: string) : void {
-  console.log(`packi ${chalk.bgHex('#E83015')(' ERRO ')}  ${text}`)
+export function warnLine(text: string): void {
+  console.log(`packi ${chalk.hex("#fbb217")(" WARN ")}  ${text}`);
 }
 
-export function printLines (text: string, fn: (text: string) => void) : void {
-  const lines = text.split('\n')
+export function errorLine(text: string): void {
+  console.log(`packi ${chalk.hex("#db4520")(" ERRO ")}  ${text}`);
+}
 
-  if (lines.length === 1) {
-    fn(text)
-    return
+export function successLine(text: string): void {
+  console.log(`packi ${chalk.hex("#b2be7e")(" SUCC ")}  ${text}`);
+}
+
+export function actionLine(text: string): void {
+  console.log(`packi ${chalk.hex("#608f9f")(" ACTN ")}  ${text}`);
+}
+
+export function printLines(text: string, fn: (text: string) => void): void {
+  if (Array.isArray(text)) {
+    text.forEach(el => {
+      printLines(el, fn);
+    });
+
+    return;
   }
 
-  lines.forEach(line => fn(line))
+  if (typeof text !== "string") {
+    let content;
+    try {
+      content = JSON.stringify(text, null, 2);
+    } catch (err) {
+      content = text;
+    }
+
+    printLines(">>>>----", fn);
+    console.log(content);
+    printLines("----<<<<", fn);
+    return;
+  }
+
+  const lines = text.split("\n");
+
+  if (lines.length === 1) {
+    fn(text);
+    return;
+  }
+
+  lines.forEach(line => fn(line));
 }
 
-export function debug (text: string) : void {
-  printLines(text, debugLine)
+export function debug(text: string): void {
+  if (!debugPrint) {
+    return;
+  }
+
+  printLines(text, debugLine);
 }
 
-export function info (text: string) : void {
-  printLines(text, infoLine)
+export function info(text: string): void {
+  printLines(text, infoLine);
 }
 
-export function warn (text: string) : void {
-  printLines(text, warnLine)
+export function warn(text: string): void {
+  printLines(text, warnLine);
 }
 
-export function error (text: string) : void {
-  printLines(text, errorLine)
+export function error(text: string): void {
+  printLines(text, errorLine);
+}
+
+export function success(text: string): void {
+  printLines(text, successLine);
+}
+
+export function declareAction(actionName: string, actionDescription?: string): void {
+  const desc = actionDescription ? `: ${actionDescription}` : "";
+  printLines(`>>>>---- ${actionName}${desc} ----<<<<`, actionLine);
 }
