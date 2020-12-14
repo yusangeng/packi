@@ -14,27 +14,27 @@ export function printPackageInfo(name: string, version: string): void {
 }
 
 export function debugLine(text: string): void {
-  console.log(`packi ${chalk.hex("#014d67")(" DEBG ")}  ${text}`);
+  console.log(`packi ${chalk.hex("#014d67")("debug")}  ${text}`);
 }
 
 export function infoLine(text: string): void {
-  console.log(`packi ${chalk.hex("#608f9f")(" INFO ")}  ${text}`);
+  console.log(`packi ${chalk.hex("#608f9f")("info")}  ${text}`);
 }
 
 export function warnLine(text: string): void {
-  console.log(`packi ${chalk.hex("#fbb217")(" WARN ")}  ${text}`);
+  console.log(`packi ${chalk.hex("#fbb217")("warnning")}  ${text}`);
 }
 
 export function errorLine(text: string): void {
-  console.log(`packi ${chalk.hex("#db4520")(" ERRO ")}  ${text}`);
+  console.log(`packi ${chalk.hex("#db4520")("error")}  ${text}`);
 }
 
 export function successLine(text: string): void {
-  console.log(`packi ${chalk.hex("#b2be7e")(" SUCC ")}  ${text}`);
+  console.log(`packi ${chalk.hex("#b2be7e")("success")}  ${text}`);
 }
 
 export function actionLine(text: string): void {
-  console.log(`packi ${chalk.hex("#608f9f")(" ACTN ")}  ${text}`);
+  console.log(`packi ${chalk.hex("#608f9f")("action")}  ${text}`);
 }
 
 export function printLines(text: string, fn: (text: string) => void): void {

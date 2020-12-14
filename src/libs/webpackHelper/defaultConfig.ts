@@ -5,7 +5,8 @@ import fileExists from "file-exists";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import MomentLocalesPlugin from "moment-locales-webpack-plugin";
 import createTransformer from "ts-import-plugin";
-import { info, warn } from "~/print";
+import Progress from "progress";
+import { info, success, warn } from "~/print";
 
 type Options = {
   cwd: string;
@@ -312,6 +313,27 @@ export default function defaultConfig({
       })
     );
   }
+
+  // 进度
+  var bar = new Progress(":message", { total: 100 });
+  let currPercentage = 0;
+
+  config.plugins.push(
+    new webpack.ProgressPlugin((percentage, message, ...args) => {
+      if (percentage >= 1) {
+        bar.terminate();
+        success(`Webpack finished.`);
+        return;
+      }
+
+      const value = Math.floor((percentage - currPercentage) * 100);
+
+      bar.tick(value, {
+        message: `${message} ${args.join(" ")}`
+      });
+      currPercentage = percentage;
+    })
+  );
 
   // sourcemap
   if (isDev) {
