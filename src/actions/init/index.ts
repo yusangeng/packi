@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import rm from "rimraf";
-import { info, error, declareAction } from "~/print";
+import { info, error, declareAction } from "packi-print";
 import { read } from "~/globalData";
 import downloadTemplate from "./downloadTemplate";
 import execEJS from "./execEJS";

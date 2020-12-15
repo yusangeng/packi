@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import ejs from "ejs";
 import walk from "fs-walk";
-import { debug, info, error } from "~/print";
+import { debug, info, error } from "packi-print";
 
 export type InitOptions = {
   projectName: string;

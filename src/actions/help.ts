@@ -1,4 +1,4 @@
-import { info, declareAction } from "~/print";
+import { info, declareAction } from "packi-print";
 
 const helpeInformation = `To get document, please visit https://www.npmjs.com/package/packi`;
 

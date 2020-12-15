@@ -1,5 +1,5 @@
 import webpack from "webpack";
-import { info, error, warn, declareAction, debug } from "~/print";
+import { info, error, warn, declareAction, debug } from "packi-print";
 import defaultConfig from "~/libs/webpackHelper/defaultConfig";
 import filterConfig from "~/libs/webpackHelper/filterConfig";
 import commandArgumentHelper from "~/libs/commandArgumentHelper";

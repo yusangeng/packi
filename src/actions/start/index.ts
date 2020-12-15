@@ -1,6 +1,6 @@
 import webpack from "webpack";
 import WebpackDevServer from "webpack-dev-server";
-import { declareAction, info, error, warn } from "~/print";
+import { declareAction, info, error, warn } from "packi-print";
 import defaultConfig from "~/libs/webpackHelper/defaultConfig";
 import filterConfig from "~/libs/webpackHelper/filterConfig";
 import { read } from "~/globalData";

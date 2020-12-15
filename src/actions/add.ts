@@ -1,4 +1,4 @@
-import { declareAction, info, error, warn } from "~/print";
+import { declareAction, info, error, warn } from "packi-print";
 import { read, write } from "~/globalData";
 
 export default function add(cwd: string, appName: string, templateName: string, url: string): number {

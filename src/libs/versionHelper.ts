@@ -1,4 +1,4 @@
-import { error, info } from "~/print";
+import { error, info } from "packi-print";
 
 export function isLegalVersion(ver: string) {
   if (!ver) {

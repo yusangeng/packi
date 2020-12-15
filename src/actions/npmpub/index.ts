@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { declareAction, info, error, warn } from "~/print";
+import { declareAction, info, error, warn } from "packi-print";
 import { read } from "~/globalData";
 import { isLegalVersion, incVersion, compareVersion } from "~/libs/versionHelper";
 import { exec } from "~/libs/commandHelper";

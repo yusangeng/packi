@@ -3,7 +3,7 @@ import path from "path";
 import mkdir from "mkdirp";
 import download from "download";
 import decompress from "decompress";
-import { debug, info } from "~/print";
+import { debug, info } from "packi-print";
 
 export default async function downloadTemplate(cwd: string, url: string): Promise<string> {
   const scaffoldDir = path.resolve(cwd, "./.packi");

@@ -6,7 +6,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import MomentLocalesPlugin from "moment-locales-webpack-plugin";
 import createTransformer from "ts-import-plugin";
 import Progress from "progress";
-import { info, success, warn } from "~/print";
+import { info, success, warn } from "packi-print";
 
 type Options = {
   cwd: string;

@@ -1,7 +1,7 @@
 import path from "path";
 import download from "download";
 import { getPackageInfo } from "~/libs/packageHelper";
-import { printPackageInfo, enableDebugPrint, error, warn, success } from "~/print";
+import { printPackageInfo, setPrintLevel, PRINT_LEVEL, error, warn, success } from "packi-print";
 import { compareVersion } from "~/libs/versionHelper";
 
 const actionPath = path.resolve(__dirname, "./actions");
@@ -21,7 +21,9 @@ export default class App {
     // console.log(this.appArgs)
 
     if (this.appArgs.find(el => el === "-D")) {
-      enableDebugPrint();
+      setPrintLevel(PRINT_LEVEL.DEBUG);
+    } else {
+      setPrintLevel(PRINT_LEVEL.INFO);
     }
   }
 

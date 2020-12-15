@@ -1,7 +1,7 @@
 import path from "path";
 import fileExists from "file-exists";
 import { Configuration } from "webpack";
-import { info, warn } from "~/print";
+import { info, warn } from "packi-print";
 
 export default async function filterConfig(cwd: string, conf: Configuration) {
   const filterSrcFilename = path.resolve(cwd, "./packi/webpack.filter.js");
