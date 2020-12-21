@@ -1,13 +1,13 @@
 import fs from "fs";
 import path from "path";
 import { declareAction, info, error, warn } from "packi-print";
-import { read } from "~/globalData";
+import { read } from "~/settings";
 import { isLegalVersion, incVersion, compareVersion } from "~/libs/versionHelper";
 import { exec } from "~/libs/commandHelper";
-import commandArgumentHelper from "~/libs/commandArgumentHelper";
+import cah from "command-arguments-helper";
 
 export default function npmpub(cwd: string, appName: string, ...rest: string[]) {
-  const realArgs = commandArgumentHelper<[string, boolean]>(["version", "force"], rest);
+  const realArgs = cah<[string, boolean]>(["version", "force"], rest);
 
   return npmpub_(cwd, appName, ...realArgs);
 }

@@ -3,11 +3,11 @@ import WebpackDevServer from "webpack-dev-server";
 import { declareAction, info, error, warn } from "packi-print";
 import defaultConfig from "~/libs/webpackHelper/defaultConfig";
 import filterConfig from "~/libs/webpackHelper/filterConfig";
-import { read } from "~/globalData";
-import commandArgumentHelper from "~/libs/commandArgumentHelper";
+import { read } from "~/settings";
+import cah from "command-arguments-helper";
 
 export default function start(cwd: string, appName: string, ...rest: string[]) {
-  const realArgs = commandArgumentHelper<[string, "web" | "mobile"]>(["port", "target"], rest);
+  const realArgs = cah<[string, "web" | "mobile"]>(["port", "target"], rest);
 
   return start_(cwd, appName, ...realArgs);
 }

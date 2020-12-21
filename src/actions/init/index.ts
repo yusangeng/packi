@@ -2,10 +2,10 @@ import fs from "fs";
 import path from "path";
 import rm from "rimraf";
 import { info, error, declareAction } from "packi-print";
-import { read } from "~/globalData";
+import { read } from "~/settings";
 import downloadTemplate from "./downloadTemplate";
 import execEJS from "./execEJS";
-import commandArgumentHelper from "~/libs/commandArgumentHelper";
+import cah from "command-arguments-helper";
 
 function isPathEmpty(path: string): boolean {
   const files = fs.readdirSync(path);
@@ -13,7 +13,7 @@ function isPathEmpty(path: string): boolean {
 }
 
 export default function init(cwd: string, appName: string, ...rest: string[]) {
-  const realArgs = commandArgumentHelper<[string, string, "web" | "mobile"]>(["template", "name", "target"], rest);
+  const realArgs = cah<[string, string, "web" | "mobile"]>(["template", "name", "target"], rest);
 
   return init_(cwd, appName, ...realArgs);
 }

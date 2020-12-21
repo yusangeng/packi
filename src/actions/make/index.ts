@@ -2,11 +2,11 @@ import webpack from "webpack";
 import { info, error, warn, declareAction, debug } from "packi-print";
 import defaultConfig from "~/libs/webpackHelper/defaultConfig";
 import filterConfig from "~/libs/webpackHelper/filterConfig";
-import commandArgumentHelper from "~/libs/commandArgumentHelper";
+import cah from "command-arguments-helper";
 import { getPackageInfo } from "~/libs/packageHelper";
 
 export default function make(cwd: string, appName: string, ...rest: string[]) {
-  const realArgs = commandArgumentHelper<["dev" | "prod", "web" | "mobile", string, string]>(
+  const realArgs = cah<["dev" | "prod", "web" | "mobile", string, string]>(
     ["mode", "target", "library", "entry"],
     rest
   );

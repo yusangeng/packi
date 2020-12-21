@@ -1,5 +1,5 @@
 import { declareAction, info, error, warn } from "packi-print";
-import { read, write } from "~/globalData";
+import { read, write } from "~/settings";
 
 export default function add(cwd: string, appName: string, templateName: string, url: string): number {
   declareAction("add", "add project template");
