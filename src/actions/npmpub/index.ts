@@ -56,6 +56,8 @@ async function npmpub_(cwd: string, appName: string, version: string, force: boo
     newVersion = incrementVersion(packageInfo.version);
   }
 
+  info(`The publishing version is ${newVersion}.`);
+
   packageInfo.version = newVersion;
   fs.writeFileSync(packageInfoFilename, JSON.stringify(packageInfo, null, 2), { encoding: "utf8" });
 
