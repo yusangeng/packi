@@ -1,6 +1,6 @@
 {
   "name": "packi",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "前端开发工具链.",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
