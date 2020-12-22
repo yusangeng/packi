@@ -1,10 +1,12 @@
 import fs from "fs";
 import path from "path";
+import cah from "command-arguments-helper";
 import { declareAction, info, error, warn } from "packi-print";
 import { read } from "~/settings";
-import { isLegalVersion, incVersion, compareVersion } from "~/libs/versionHelper";
-import { exec } from "~/libs/commandHelper";
-import cah from "command-arguments-helper";
+import exec from "~/utils/command/exec";
+import isLegalVersion from "~/utils/version/isLegalVersion";
+import compareVersion from "~/utils/version/compareVersion";
+import incrementVersion from "~/utils/version/incrementVersion";
 
 export default function npmpub(cwd: string, appName: string, ...rest: string[]) {
   const realArgs = cah<[string, boolean]>(["version", "force"], rest);
@@ -51,7 +53,7 @@ async function npmpub_(cwd: string, appName: string, version: string, force: boo
 
     newVersion = version;
   } else {
-    newVersion = incVersion(packageInfo.version);
+    newVersion = incrementVersion(packageInfo.version);
   }
 
   packageInfo.version = newVersion;

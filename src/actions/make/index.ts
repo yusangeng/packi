@@ -1,9 +1,9 @@
 import webpack from "webpack";
-import { info, error, warn, declareAction, debug } from "packi-print";
-import defaultConfig from "~/libs/webpackHelper/defaultConfig";
-import filterConfig from "~/libs/webpackHelper/filterConfig";
 import cah from "command-arguments-helper";
-import { getPackageInfo } from "~/libs/packageHelper";
+import { info, error, warn, declareAction, debug } from "packi-print";
+import defaultConfig from "~/utils/webpack/defaultConfig";
+import filterConfig from "~/utils/webpack/filterConfig";
+import getPackageJSON from "~/utils/package/packageJSON";
 
 export default function make(cwd: string, appName: string, ...rest: string[]) {
   const realArgs = cah<["dev" | "prod", "web" | "mobile", string, string]>(
@@ -26,7 +26,8 @@ async function make_(
 
   if ((library as any) === true) {
     // umd模式下如果没设置库名，则以包名作为库名
-    library = getPackageInfo().name;
+    const data = await getPackageJSON();
+    library = data.name;
   }
 
   info(`mode=${mode}\ntarget=${target}\nlibrary=${library}\nentry=${entryFilename}`);

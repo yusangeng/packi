@@ -1,11 +1,11 @@
 import fs from "fs";
 import path from "path";
 import rm from "rimraf";
+import cah from "command-arguments-helper";
 import { info, error, declareAction } from "packi-print";
 import { read } from "~/settings";
 import downloadTemplate from "./downloadTemplate";
 import execEJS from "./execEJS";
-import cah from "command-arguments-helper";
 
 function isPathEmpty(path: string): boolean {
   const files = fs.readdirSync(path);

@@ -1,8 +1,8 @@
 import path from "path";
 import download from "download";
-import { getPackageInfo } from "~/libs/packageHelper";
 import { printPackageInfo, setPrintLevel, PRINT_LEVEL, error, warn, success } from "packi-print";
-import { compareVersion } from "~/libs/versionHelper";
+import getPackageJSON from "~/utils/package/packageJSON";
+import compareVersion from "~/utils/version/compareVersion";
 
 const actionPath = path.resolve(__dirname, "./actions");
 
@@ -29,7 +29,7 @@ export default class App {
 
   async run(): Promise<number> {
     try {
-      this.printAppInfo();
+      await this.printAppInfo();
       await this.checkVersion();
     } catch (err) {
       error(err.message);
@@ -76,8 +76,8 @@ export default class App {
     return retCode;
   }
 
-  printAppInfo() {
-    const { name, version } = getPackageInfo();
+  async printAppInfo() {
+    const { name, version } = await getPackageJSON();
     printPackageInfo(name, version);
   }
 
@@ -86,7 +86,7 @@ export default class App {
     const jsonText = data.toString("utf8");
     const schema = JSON.parse(jsonText);
     const latestVersion = schema["dist-tags"]["latest"];
-    const { version } = getPackageInfo();
+    const { version } = await getPackageJSON();
 
     if (compareVersion(latestVersion, version) > 0) {
       //if (onlineVersion !== version) {

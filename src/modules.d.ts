@@ -15,3 +15,5 @@ declare module "fs-walk" {
 
   export default walk;
 }
+
+declare module "packagejson";
