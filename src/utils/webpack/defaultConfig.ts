@@ -1,11 +1,12 @@
 import fs from "fs";
 import path from "path";
 import webpack from "webpack";
+import Progress from "progress";
 import fileExists from "file-exists";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import MomentLocalesPlugin from "moment-locales-webpack-plugin";
+import OptimizeCssAssetsWebpackPlugin from "optimize-css-assets-webpack-plugin";
 import createTransformer from "ts-import-plugin";
-import Progress from "progress";
 import { info, success, warn } from "packi-print";
 
 type Options = {
@@ -75,7 +76,7 @@ const getPostCSSConfig = (isMobile = false) => {
     loader: "postcss-loader",
     options: {
       ident: "postcss",
-      plugins: [require("postcss-cssnext")(), require("postcss-assets")(), require("cssnano")()]
+      plugins: [require("postcss-cssnext")(), require("postcss-assets")()]
     }
   };
 
@@ -295,6 +296,9 @@ export default function defaultConfig({
 
   // css分离
   config.plugins.push(new MiniCssExtractPlugin());
+
+  // css裁剪压缩
+  config.plugins.push(new OptimizeCssAssetsWebpackPlugin());
 
   // 裁剪moment语言包
   config.plugins.push(
