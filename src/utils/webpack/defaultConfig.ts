@@ -3,11 +3,12 @@ import path from "path";
 import webpack from "webpack";
 import Progress from "progress";
 import fileExists from "file-exists";
+import { info, success, warn } from "packi-print";
+import createTransformer from "ts-import-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import MomentLocalesPlugin from "moment-locales-webpack-plugin";
 import OptimizeCssAssetsWebpackPlugin from "optimize-css-assets-webpack-plugin";
-import createTransformer from "ts-import-plugin";
-import { info, success, warn } from "packi-print";
+import toPercent from "~/utils/format/toPercent";
 
 type Options = {
   cwd: string;
@@ -202,12 +203,14 @@ export default function defaultConfig({
     ]
   });
 
-  // sourcemap
-  config.module.rules?.push({
-    test: /\.js?$/,
-    use: ["source-map-loader"],
-    enforce: "pre"
-  });
+  if (isDev) {
+    // sourcemap
+    config.module.rules?.push({
+      test: /\.js?$/,
+      use: ["source-map-loader"],
+      enforce: "pre"
+    });
+  }
 
   // 对于组件，我们使用less
   config.module.rules?.push({
@@ -319,7 +322,7 @@ export default function defaultConfig({
   }
 
   // 进度
-  var bar = new Progress(":message", { total: 100 });
+  const bar = new Progress(":message", { total: 100 });
   let currPercentage = 0;
 
   config.plugins.push(
@@ -332,8 +335,17 @@ export default function defaultConfig({
 
       const value = Math.floor((percentage - currPercentage) * 100);
 
+      const currentValue = Math.floor(currPercentage * 100);
+      const currentProgress: string[] = [];
+
+      for (let i = 0; i < 100; ++i) {
+        currentProgress.push("-");
+      }
+
+      currentProgress.fill("#", 0, currentValue);
+
       bar.tick(value, {
-        message: `${message} ${args.join(" ")}`
+        message: `Webpack building ${toPercent(currPercentage)} [${currentProgress.join("")}]`
       });
       currPercentage = percentage;
     })
