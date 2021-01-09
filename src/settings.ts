@@ -17,6 +17,7 @@ const context = new Context<S>({
   defaultSettings: {
     templates: {
       lib: "https://github.com/yusangeng/packi-template-tslib/archive/master.zip",
+      cli: "https://github.com/yusangeng/packi-template-cli/archive/master.zip",
       web: "https://github.com/yusangeng/packi-template-web/archive/master.zip",
       component: "https://github.com/yusangeng/packi-template-component/archive/master.zip"
     },
