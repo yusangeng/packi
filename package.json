@@ -16,7 +16,7 @@
     "es5": "tsc -p tsconfig.json",
     "watch": "tsc -p tsconfig.json --watch",
     "prepublishOnly": "rm -rf ./lib && npm run es5",
-    "ci": "npm run es5 && npm link && mkdir demo && cd demo && pki init tslib"
+    "ci": "npm run es5 && npm link && mkdir demo && cd demo && pki init lib"
   },
   "repository": {
     "type": "git",
@@ -43,6 +43,7 @@
     "@types/mocha": "^8.2.0",
     "@types/node": "^14.14.12",
     "@types/optimize-css-assets-webpack-plugin": "^5.0.1",
+    "@types/progress": "^2.0.3",
     "@types/rimraf": "^3.0.0",
     "@types/semver": "^7.3.4",
     "@types/webpack": "^4.41.25",
@@ -57,7 +58,6 @@
   },
   "dependencies": {
     "@svgr/webpack": "^5.5.0",
-    "@types/progress": "^2.0.3",
     "async": "^2.6.3",
     "command-arguments-helper": "^0.1.1",
     "css-loader": "^5.0.1",

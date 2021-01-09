@@ -26,7 +26,7 @@ async function make_(
 
   if ((library as any) === true) {
     // umd模式下如果没设置库名，则以包名作为库名
-    const data = await getPackageJSON();
+    const data = await getPackageJSON(cwd);
     library = data.name;
   }
 

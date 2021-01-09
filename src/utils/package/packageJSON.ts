@@ -1,8 +1,8 @@
 import packagejson from "packagejson";
 
-export default function getPackageJSON() {
+export default function getPackageJSON(path: string = __dirname) {
   return new Promise<any>((resolve, reject) => {
-    packagejson(__dirname, (err: any, data: any) => {
+    packagejson(path, (err: any, data: any) => {
       if (err) {
         reject(err);
         return;
