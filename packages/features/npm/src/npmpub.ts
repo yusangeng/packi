@@ -9,7 +9,10 @@ import compareVersion from "@packi_/utils/cjs/version/compareVersion";
 import incrementVersion from "@packi_/utils/cjs/version/incrementVersion";
 
 export default function npmpub(cwd: string, appName: string, ...rest: string[]): Promise<number> {
-  const realArgs = cah<[string, boolean, boolean, boolean]>(["version", "force", "beta", "public"], rest);
+  const realArgs = cah<[string, boolean, boolean, boolean, boolean]>(
+    ["version", "force", "beta", "public", "syncrepo"],
+    rest
+  );
 
   return npmpub_(cwd, appName, ...realArgs);
 }
@@ -20,7 +23,8 @@ async function npmpub_(
   version: string,
   isForce: boolean,
   isBeta: boolean,
-  isPublic: boolean
+  isPublic: boolean,
+  syncRepo: boolean = true
 ): Promise<number> {
   declareAction("npmpub", "publish package to npm");
 
@@ -75,10 +79,19 @@ async function npmpub_(
     npmpublishArgs.push("public");
   }
 
+  if (isBeta) {
+    npmpublishArgs.push("--tag");
+    npmpublishArgs.push("beta");
+  }
+
   let result = await exec("npm", npmpublishArgs);
   if (result.failed) {
     error(`npm publish failed.`);
     return 1;
+  }
+
+  if (!syncRepo) {
+    return 0;
   }
 
   info(`Step3: push code to repo.`);

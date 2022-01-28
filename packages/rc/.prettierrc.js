@@ -1,3 +1,3 @@
-const base = require("packi-lint-config/prettierrc");
+const base = require("@packi_/lint-config/prettierrc");
 
 module.exports = Object.assign({}, base, {});

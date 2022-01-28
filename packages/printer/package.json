@@ -1,6 +1,6 @@
 {
   "name": "@packi_/printer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "console彩色打印，用于编写命令行工具.",
   "main": "cjs/index.js",
   "scripts": {
@@ -10,7 +10,8 @@
     "cjs": "tsc -p tsconfig.cjs.json",
     "build": "npm run clear && npm run cjs",
     "clear": "rm -rf .nyc_output cjs coverage esm",
-    "prepublishOnly": "npm run test && npm run build",
+    "__prepublishOnly": "npm run test && npm run build",
+    "prepublishOnly": "npm run build",
     "ci": "npm run lint && npm run build && npm run test && npm run coverage"
   },
   "repository": {
@@ -42,7 +43,7 @@
     "nyc": "^15.1.0",
     "prettier": "^2.5.0",
     "ts-node": "^10.4.0",
-    "typescript": "^4.6.0-dev.20220120"
+    "typescript": "^4.5.5"
   },
   "dependencies": {
     "chalk": "^4.0.0",

@@ -13,8 +13,8 @@ export class App {
   cwd: string;
   command: string;
 
-  packageName: string = "";
-  packageVersion: string = "";
+  packageName = "";
+  packageVersion = "";
 
   constructor(args: string[], cwd: string) {
     this.appArgs = args.slice(2);
@@ -64,10 +64,10 @@ export class App {
     try {
       const { name, version } = await getPackageJSON(path.resolve(__dirname, "../"));
 
-      this.packageName = name;
-      this.packageVersion = version;
+      this.packageName = name as string;
+      this.packageVersion = version as string;
 
-      this.printAppInfo();   
+      this.printAppInfo();
       this.checkVersion();
     } catch (err) {
       error((err as Error).message);

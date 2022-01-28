@@ -8,12 +8,12 @@ const actions: { [k: string]: string } = {
   make: "@packi_/feature-webpack/cjs/make",
   start: "@packi_/feature-webpack/cjs/start",
 
-  npmpub: "@packi_/feature-npm/cjs/npmpub",
+  npmpub: "@packi_/feature-npm/cjs/npmpub"
 };
 
 export default async function getAction(command: string): Promise<((...args: any[]) => Promise<number>) | undefined> {
   if (command === "help") {
-    return help
+    return help;
   }
 
   try {
