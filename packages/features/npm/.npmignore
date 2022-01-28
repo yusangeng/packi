@@ -1,0 +1,17 @@
+coverage
+.nyc_output
+.vscode
+package-lock.json
+yarn.lock
+src
+test
+.temp
+tsconfig.json
+.gitignore
+.npmignore
+.eslintrc.cjs
+.prettierignore
+.prettierrc.js
+.DS_Store
+.github
+.mocharc.json

@@ -2,6 +2,7 @@
 
 [![TypeScript](https://img.shields.io/badge/lang-typescript-blue.svg)](https://www.tslang.cn/) [![Build Status](https://github.com/yusangeng/packi/workflows/test/badge.svg)](https://github.com/yusangeng/packi/actions?query=workflow%3Atest) [![Coverage Status](https://coveralls.io/repos/github/yusangeng/packi/badge.svg?branch=master)](https://coveralls.io/github/yusangeng/packi) [![Npm Package Info](https://badge.fury.io/js/packi.svg)](https://www.npmjs.com/package/packi) [![Downloads](https://img.shields.io/npm/dw/packi.svg?style=flat)](https://www.npmjs.com/package/packi)
 
+
 ## 综述
 
 前端开发工具链. 为前端项目提供项目初始化, 项目调试, 项目构建, 项目发布等一揽子开发提效功能.
@@ -104,7 +105,7 @@ npmpub 命令会执行以下操作:
 ```js
 // packi/webpack.filter.js
 module.exports = function filter(config) {
-  config.entry.index = 'main.js';
+  config.entry.index = "main.js";
 
   // 如果需要异步操作, 可以返回Promise
   return config;

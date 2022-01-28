@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "outDir": "esm",
+    "noEmit": false,
+    "declaration": false,
+    "sourceMap": true,
+    "noEmitOnError": false,
+    "stripInternal": true,
+    "target": "es6",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "rootDirs": ["./", "src", "test"],
+    "typeRoots": ["node_modules/@types", "types"]
+  },
+  "include": ["src", "types", "test"],
+  "exclude": ["node_modules"]
+}

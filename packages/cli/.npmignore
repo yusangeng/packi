@@ -1,0 +1,17 @@
+node_modules
+coverage
+.nyc_output
+.vscode
+yarn.lock
+package-lock.json
+.gitignore
+.eslintrc.js
+.prettierrc
+.travis.yml
+tsconfig.json
+tsconfig.cjs.json
+tsconfig.esm.json
+.mocharc.json
+.github
+src
+test

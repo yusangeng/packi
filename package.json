@@ -1,124 +1,30 @@
 {
   "name": "packi",
-  "version": "1.0.11",
-  "description": "前端开发工具链.",
-  "main": "lib/index.js",
-  "jsnext:main": "src/index.js",
-  "bin": {
-    "pki": "bin/index.js",
-    "packi": "bin/index.js"
-  },
-  "types": "lib/",
-  "type-check": "tsc",
+  "version": "1.0.0",
+  "description": "前端开发工具链",
+  "main": "index.js",
   "scripts": {
-    "test": "nyc mocha --require ts-node/register test/*.spec.ts",
-    "coverage": "nyc report --reporter=lcov",
-    "es5": "tsc -p tsconfig.json",
-    "watch": "tsc -p tsconfig.json --watch",
-    "prepublishOnly": "rm -rf ./lib && npm run es5",
-    "ci": "npm run es5 && npm link && mkdir demo && cd demo && pki init lib"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yusangeng/packi.git"
+    "url": "git+https://github.com/yusangeng/packi.git"
   },
   "keywords": [
-    "toolchain",
-    "initialize",
-    "scaffold"
+    "cli",
+    "webpack",
+    "scafold"
   ],
   "author": {
     "name": "yusangeng",
     "email": "yusangeng@outlook.com"
   },
   "license": "MIT",
-  "devDependencies": {
-    "@types/chai": "^4.2.14",
-    "@types/download": "^6.2.4",
-    "@types/ejs": "^3.0.5",
-    "@types/file-exists": "^4.0.0",
-    "@types/lodash": "^4.14.165",
-    "@types/mini-css-extract-plugin": "^1.2.2",
-    "@types/mkdirp": "^1.0.1",
-    "@types/mocha": "^8.2.0",
-    "@types/node": "^14.14.12",
-    "@types/optimize-css-assets-webpack-plugin": "^5.0.1",
-    "@types/progress": "^2.0.3",
-    "@types/rimraf": "^3.0.0",
-    "@types/semver": "^7.3.4",
-    "@types/webpack": "^4.41.25",
-    "@types/webpack-dev-server": "^3.11.1",
-    "chai": "^4.2.0",
-    "coveralls": "^3.1.0",
-    "mocha": "^8.2.1",
-    "nyc": "^15.1.0",
-    "packi-lint-config": "^0.1.11",
-    "source-map-support": "^0.5.19",
-    "ts-node": "^9.1.1"
+  "bugs": {
+    "url": "https://github.com/yusangeng/packi/issues"
   },
+  "homepage": "https://github.com/yusangeng/packi#readme",
   "dependencies": {
-    "@svgr/webpack": "^5.5.0",
-    "async": "^2.6.3",
-    "command-arguments-helper": "^0.1.1",
-    "css-loader": "^5.0.1",
-    "decompress": "^4.2.1",
-    "download": "^8.0.0",
-    "ejs": "^3.1.5",
-    "eslint-import-resolver-alias": "^1.1.2",
-    "execa": "^5.0.0",
-    "file-exists": "^5.0.1",
-    "file-loader": "^6.2.0",
-    "fs-walk": "^0.0.2",
-    "is-dir": "^1.0.0",
-    "less": "^3.12.2",
-    "less-loader": "^7.1.0",
-    "mini-css-extract-plugin": "^1.3.3",
-    "mkdirp": "^1.0.4",
-    "module-alias": "^2.2.2",
-    "moment": "^2.29.1",
-    "moment-locales-webpack-plugin": "^1.2.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.4",
-    "package-json-cleanup-loader": "^1.0.3",
-    "packagejson": "^1.0.1",
-    "packi-print": "^0.1.3",
-    "packi-settings": "^0.1.1",
-    "postcss": "^8.1.4",
-    "postcss-assets": "^5.0.0",
-    "postcss-cssnext": "^3.1.0",
-    "postcss-loader": "^3.0.0",
-    "postcss-px-to-viewport": "^1.1.1",
-    "progress": "^2.0.3",
-    "rimraf": "^3.0.2",
-    "semver": "^7.3.4",
-    "simple-git": "^2.26.0",
-    "source-map-loader": "^1.1.3",
-    "style-loader": "^2.0.0",
-    "ts-import-plugin": "^1.6.7",
-    "ts-loader": "^8.0.12",
-    "tslib": "^2.0.3",
-    "typescript": "^4.1.2",
-    "url-loader": "^4.1.1",
-    "webpack": "^4.44.1",
-    "webpack-bundle-analyzer": "^4.2.0",
-    "webpack-dev-server": "^3.11.0"
-  },
-  "nyc": {
-    "extension": [
-      ".ts",
-      ".tsx"
-    ],
-    "include": [
-      "src"
-    ],
-    "exclude": [
-      "**/*.d.ts"
-    ],
-    "reporter": [
-      "html"
-    ],
-    "all": true
-  },
-  "_moduleAliases": {
-    "~": "lib/"
+    "chalk": "^5.0.0"
   }
 }
